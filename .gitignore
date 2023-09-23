@@ -1,0 +1,37 @@
+# 忽略Visual Studio Code配置文件
+.vscode/
+
+# 忽略IntelliJ IDEA配置文件
+.idea/
+
+# 忽略PyCharm配置文件
+*.iml
+
+# 忽略Sublime Text配置文件
+*.sublime-project
+*.sublime-workspace
+
+# 忽略Eclipse配置文件
+.settings/
+
+# 忽略NetBeans配置文件
+nbproject/
+
+# 忽略Android Studio配置文件
+.gradle/
+.idea/
+*.iml
+.build/
+
+# 忽略Atom配置文件
+.atom/
+
+# 忽略Vim配置文件
+.vim/
+
+# 忽略Emacs配置文件
+.emacs.d/
+
+# 忽略Nano编辑器备份文件
+.*.swp
+.*.swo
