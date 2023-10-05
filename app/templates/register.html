@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>源梦职位分析登录</title>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .register-box {
+            flex-direction: column;
+            padding: 60px 170px;
+            gap: 20px;
+            text-align: center;
+        }
+        #register {
+            color: #000;
+            font-family: Roboto;
+            font-size: 40px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 48px;
+        }
+        .input-text{
+            color: #000;
+            font-family: Roboto;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+            margin: 0;
+            text-align: left;
+        }
+        input{
+            overflow: hidden;
+            color: rgba(0, 0, 0, 0.50);
+            text-overflow: ellipsis;
+            font-family: Roboto;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px; /* 142.857% */
+        }
+        .popup {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .popup-text {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-box" style="display: flex;">
+        <p id="register">注册</p>
+        <form method="POST">
+            <div class="input-box">
+                <p for="username" class="input-text">用户名</p>
+                <input type="text" id="username" name="username" required><br><br>
+            </div>
+            <div class="input-box">
+                <p for="email" class="input-text">邮箱</p>
+                <input type="text" id="email" name="email" required><br><br>
+            </div>
+            <div class="input-box">
+                <p for="email-code" class="input-text">邮箱验证码</p>
+                <input type="text" id="email-code" name="email-code" required style="width: 72px;">
+                <button class="email-code" onclick="" type="button">发送验证码</button><br><br>
+            </div>
+            <div class="input-box">
+                <p for="password" class="input-text">密码</p>
+                <input type="password" id="password" name="password" required><br><br>
+            </div>
+            <input type="submit" class="register-button" value="注册">
+            <button class="login-button" id="login-button">返回登录</button>
+        </form>
+    </div>
+
+    <div id="popup" class="popup">
+        <span class="popup-text" id="popup-text"></span>
+    </div>
+
+    <script>
+        document.getElementById('login-button').addEventListener('click', function() {
+            window.location.href = "{{ url_for('login') }}";
+        });
+        // 获取弹窗元素和文本内容
+        var popup = document.getElementById("popup");
+        var popupText = document.getElementById("popup-text");
+
+        // 函数用于显示弹窗
+        function showPopup(message) {
+            popupText.textContent = message;
+            popup.style.display = "block";
+            setTimeout(function() {
+                popup.style.display = "none";
+            }, 4000); // 弹窗将在1秒后自动消失
+        }
+
+        // 检查是否存在flash消息
+        var flashMessage = "{{ get_flashed_messages() }}";
+        if (flashMessage!="[]") {
+            // 如果有flash消息，显示弹窗
+            showPopup(flashMessage);
+        }
+    </script>
+
+</body>
+</html>
