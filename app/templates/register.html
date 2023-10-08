@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <title>源梦职位分析登录</title>
     <style>
         body {
@@ -76,15 +76,16 @@
             </div>
             <div class="input-box">
                 <p for="email-code" class="input-text">邮箱验证码</p>
-                <input type="text" id="email-code" name="email-code" required style="width: 72px;">
-                <button class="email-code" onclick="" type="button">发送验证码</button><br><br>
-            </div>
+                <div style="display: flex;height: 26px;">
+                    <input type="text" id="email-code" name="email-code" required style="width: 72px;flex:3;">
+                    <button class="email-code" onclick="" type="button" style="flex:2;font-size: 10px;">发送验证码</button></div><br>
+                </div>
             <div class="input-box">
                 <p for="password" class="input-text">密码</p>
                 <input type="password" id="password" name="password" required><br><br>
             </div>
             <input type="submit" class="register-button" value="注册">
-            <button class="login-button" id="login-button">返回登录</button>
+            <button class="login-button" id="login-button" type="button">返回登录</button>
         </form>
     </div>
 

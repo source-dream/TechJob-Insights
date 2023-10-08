@@ -3,9 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Your Page Title</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .main-container {
+            height: 100vh;
+            display: flex;
+        }
+        .navbar {
+            background-color: #FFFFFF;
+            flex: 1;
+            padding: 20px;
+        }
+        .navbar a {
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            text-align: center;
+        }
+        .admin-container {
+            background-color: #C7C7C7;
+            flex: 4;
+        }
+        .card-box{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .card{
+            flex: 0 0 25%;
+            border: 1px solid #e5e5e5;
+            background: #fff;
+            padding: 20px 30px;
+            position: relative;
+            min-height: 180px;
+            margin: 40px;
+        }
+    </style>
 </head>
 <body>
-    这是后台账号信息管理页面
+    <div class="main-container">
+        <div class="navbar">
+            <div class="section">
+                <a href="{{ url_for('admin.admin') }}">概览</a>
+                <hr>
+                <a href="{{ url_for('admin.admin_user') }}">用户管理</a>
+                <hr>
+                <a href="{{ url_for('admin.admin_data') }}">职位数据管理</a>
+            </div>
+        </div>
+        <div class="admin-container">
+            <div class="card-box">
+                <div class="card">
+
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

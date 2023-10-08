@@ -11,14 +11,13 @@ index_bp = Blueprint('index', __name__)
 login_bp = Blueprint('login', __name__)
 
 
-from . import computer_jobs, salary_distribution, job_distribution, job_search, user_profile, admin, index, login
+from . import computer_jobs, job_visual, user_profile, admin, index, login
 
 
-app.register_blueprint(computer_jobs_bp, url_prefix='/computer_jobs')
-app.register_blueprint(salary_distribution_bp, url_prefix='/salary_distribution')
-app.register_blueprint(job_distribution_bp, url_prefix='/job_distribution')
-app.register_blueprint(job_search_bp, url_prefix='/job_search')
-app.register_blueprint(user_profile_bp, url_prefix='/user_profile')
+# app.register_blueprint(computer_jobs_bp, url_prefix='/computer_jobs')
+# app.register_blueprint(job_distribution_bp, url_prefix='/job_distribution')
+# app.register_blueprint(job_search_bp, url_prefix='/job_search')
+# app.register_blueprint(user_profile_bp, url_prefix='/user_profile')
 app.register_blueprint(admin_bp, url_prefix='/admin')
 app.register_blueprint(index_bp, url_prefix='/')
-app.register_blueprint(login_bp, url_prefix='/login')
+# app.register_blueprint(login_bp, url_prefix='/login')
