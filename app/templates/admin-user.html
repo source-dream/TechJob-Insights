@@ -8,13 +8,15 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Added background color to the body */
         }
         .main-container {
-            height: 100vh;
+            min-height: 100vh; /* Changed height to min-height for smaller content */
             display: flex;
         }
         .navbar {
-            background-color: #FFFFFF;
+            background-color: #333;
+            color: #fff; /* White text on the navbar */
             flex: 1;
             padding: 20px;
         }
@@ -22,13 +24,58 @@
             display: block;
             margin-bottom: 10px;
             text-decoration: none;
-            color: #333;
+            color: #fff; /* White text for navbar links */
             font-weight: bold;
             text-align: center;
         }
         .admin-container {
-            background-color: #C7C7C7;
+            background-color: #fff;
             flex: 4;
+            padding: 20px;
+        }
+        .user-box {
+            background-color: #FFFFFF;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Added box shadow */
+        }
+        .box1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .box1 h1 {
+            margin: 0; /* Remove margin for better alignment */
+            font-size: 24px; /* Increased font size */
+        }
+        .add-user-button {
+            height: 40px;
+            width: 150px; /* Increased button width */
+            background-color: #007bff; /* Blue color for the button */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .add-user-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #007bff; /* Blue header background */
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Alternate row background */
         }
     </style>
 </head>
@@ -43,7 +90,59 @@
                 <a href="{{ url_for('admin.admin_data') }}">职位数据管理</a>
             </div>
         </div>
-        <div class="admin-container"></div>
+        <div class="admin-container">
+            <div class="user-box">
+                <div class="box1">
+                    <h1>用户列表</h1>
+                    <button class="add-user-button">添加新用户</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>用户名</th>
+                            <th>用户邮箱</th>
+                            <th>用户密码</th>
+                            <th>注册时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td><input type="text" value="{{ user.username }}"></td>
+                            <td><input type="text" value="{{ user.email }}"></td>
+                            <td><input type="text"></td>
+                            <td>未知</td>
+                            <td><a>修改</a><a href="#" onclick="deleteUser({{ user.id }})" style="margin-left: 10px;">删除</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+    <script>
+        function deleteUser(id) {
+            if (confirm("确认删除该用户？")) {
+                fetch(`/admin/delete_user/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.status === 200) {
+                        location.reload();
+                    } else {
+                        alert('删除失败');
+                    }
+                })
+                .catch(error => {
+                    console.error('删除失败', error);
+                });
+            }
+        }
+
+    </script>
 </body>
 </html>

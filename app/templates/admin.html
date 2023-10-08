@@ -9,39 +9,55 @@
             margin: 0;
             font-family: Arial, sans-serif;
         }
+        
         .main-container {
             height: 100vh;
             display: flex;
         }
+        
         .navbar {
-            background-color: #FFFFFF;
+            background-color: #333;
+            color: #fff; /* White text on the navbar */
             flex: 1;
             padding: 20px;
         }
+        
         .navbar a {
             display: block;
             margin-bottom: 10px;
             text-decoration: none;
-            color: #333;
+            color: #fff; /* White text for navbar links */
             font-weight: bold;
             text-align: center;
         }
+        
         .admin-container {
             background-color: #C7C7C7;
             flex: 4;
         }
-        .card-box{
+        
+        .card-box {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center; /* Changed from justify-items to justify-content */
         }
-        .card{
-            flex: 0 0 25%;
+        
+        .card {
             border: 1px solid #e5e5e5;
+            border-radius: 10px;
             background: #fff;
-            padding: 20px 30px;
+            height: 200px;
+            width: 300px;
+            margin: 10px; /* Removed duplicate margin property */
             position: relative;
-            min-height: 180px;
-            margin: 40px;
+        }
+        
+        .visual {
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            background: #fff;
+            height: 660px;
+            margin: 10px 20px;
         }
     </style>
 </head>
@@ -58,10 +74,12 @@
         </div>
         <div class="admin-container">
             <div class="card-box">
-                <div class="card">
-
-                </div>
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
             </div>
+            <div class="visual"></div>
         </div>
     </div>
 </body>
