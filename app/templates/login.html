@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>源梦职位分析登录</title>
     <style>
         body {
@@ -11,20 +11,23 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            background-image: url('https://cdn.sourcedream.cn/image/computer.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
         }
+
         .login-box {
             flex-direction: column;
-            padding: 60px 170px;
-            gap: 60px;
-            text-align: center;
-        }
-        .register-box {
-            flex-direction: column;
-            padding: 60px 170px;
+            padding: 60px 120px;
             gap: 20px;
-            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
         }
+
         #login {
+            text-align: center;
             color: #000;
             font-family: Roboto;
             font-size: 40px;
@@ -32,15 +35,8 @@
             font-weight: 700;
             line-height: 48px;
         }
-        #register {
-            color: #000;
-            font-family: Roboto;
-            font-size: 40px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 48px;
-        }
-        .input-text{
+
+        .input-text {
             color: #000;
             font-family: Roboto;
             font-size: 14px;
@@ -50,16 +46,30 @@
             margin: 0;
             text-align: left;
         }
-        input{
-            overflow: hidden;
-            color: rgba(0, 0, 0, 0.50);
-            text-overflow: ellipsis;
+
+        .input-box {
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
             font-family: Roboto;
             font-size: 14px;
             font-style: normal;
             font-weight: 400;
-            line-height: 20px; /* 142.857% */
+            line-height: 20px;
         }
+
+        .password-toggle {
+            cursor: pointer;
+            color: #007BFF;
+            font-size: 14px;
+        }
+
         .popup {
             position: fixed;
             top: 10px;
@@ -74,11 +84,34 @@
         .popup-text {
             font-size: 14px;
         }
-        .login-box{
-            display: flex;
-            background-color: antiquewhite;
+
+        .login-box {
             width: 400px;
-            height: 350px;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .login-button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .register-button {
+            background-color: transparent;
+            border: none;
+            color: #007BFF;
+            font-weight: 500;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -87,15 +120,18 @@
         <p id="login">登录</p>
         <form method="POST">
             <div class="input-box">
-                <p for="username" class="input-text">输入用户名或者邮箱</p>
-                <input type="text" id="username" name="username" required><br><br>
+                <label for="username" class="input-text">输入用户名或者邮箱</label>
+                <input type="text" id="username" name="username" required>
             </div>
             <div class="input-box">
-                <p for="password" class="input-text">密码:</p>
-                <input type="password" id="password" name="password" required><br><br>
+                <label for="password" class="input-text">密码:</label>
+                <input type="password" id="password" name="password" required>
+                <span class="password-toggle" onclick="togglePasswordVisibility()">显示密码</span>
             </div>
-            <input type="submit" class="login-button" value="登录">
-            <button class="register-button" id="register-button" type="button">注册</button>
+            <div class="buttons">
+                <input type="submit" class="login-button" value="登录">
+                <button class="register-button" id="register-button" type="button">注册</button>
+            </div>
         </form>
     </div>
 
@@ -107,6 +143,7 @@
         document.getElementById('register-button').addEventListener('click', function() {
             window.location.href = "{{ url_for('register') }}";
         });
+
         // 获取弹窗元素和文本内容
         var popup = document.getElementById("popup");
         var popupText = document.getElementById("popup-text");
@@ -117,16 +154,27 @@
             popup.style.display = "block";
             setTimeout(function() {
                 popup.style.display = "none";
-            }, 4000); // 弹窗将在1秒后自动消失
+            }, 4000); // 弹窗将在4秒后自动消失
         }
 
         // 检查是否存在flash消息
         var flashMessage = "{{ get_flashed_messages() }}";
-        if (flashMessage!="[]") {
+        if (flashMessage !== "[]") {
             // 如果有flash消息，显示弹窗
             showPopup(flashMessage);
         }
-    </script>
 
+        // 切换密码输入框的可见性
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("password");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                document.querySelector(".password-toggle").textContent = "隐藏密码";
+            } else {
+                passwordInput.type = "password";
+                document.querySelector(".password-toggle").textContent = "显示密码";
+            }
+        }
+    </script>
 </body>
 </html>
