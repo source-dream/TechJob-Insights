@@ -14,6 +14,8 @@ def login():
             return redirect(url_for('login'))
         login_user(user, remember=True)
         # login_user(user, remember=request.form['remember_me'])
+        if current_user.is_admin:
+            return redirect(url_for('admin.admin'))
         return redirect(next_page or url_for('index.index'))
     if current_user.is_authenticated:
         return redirect(url_for('index.index'))
@@ -33,7 +35,7 @@ def register():
         if existing_user:
             flash('Email already registered. Please use a different email.', 'error')
             return redirect(url_for('register'))
-        user = User(username=request.form['username'], email=email)
+        user = User(username=request.form['username'], email=email, is_admin=False)
         user.set_password(request.form['password'])
         db.session.add(user)
         db.session.commit()

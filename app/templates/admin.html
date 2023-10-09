@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Page Title</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
         body {
             margin: 0;
@@ -51,7 +52,12 @@
             margin: 10px; /* Removed duplicate margin property */
             position: relative;
         }
-        
+        .card p {
+            position: absolute;
+            /* bottom: 10px; */
+            right: 40px;
+            font-size: 40px;
+        }
         .visual {
             border: 1px solid #e5e5e5;
             border-radius: 10px;
@@ -70,17 +76,37 @@
                 <a href="{{ url_for('admin.admin_user') }}">用户管理</a>
                 <hr>
                 <a href="{{ url_for('admin.admin_data') }}">职位数据管理</a>
+                <hr>
+                <a href="{{ url_for('index.index') }}">回到主页</a>
             </div>
         </div>
         <div class="admin-container">
             <div class="card-box">
-                <div class="card"></div>
-                <div class="card"></div>
-                <div class="card"></div>
-                <div class="card"></div>
+                <div class="card">
+                    <h1 style="margin: 20px;"> 注册用户数</h1>
+                    <p>{{ user_size }}</p>
+                </div>
+                <div class="card">
+                    <h1 style="margin: 20px;"> 职位数据数</h1>
+                    <p>{{ job_size }}</p>
+                </div>
+                <div class="card">
+                    <h1 style="margin: 20px;"> 总访问次数</h1>
+                    <p>{{ visit_time }}</p>
+                </div>
+                <div class="card">
+                    <h1 style="margin: 20px;"> 当日访问次数</h1>
+                    <p>{{ visit_time_day }}</p>
+                </div>
             </div>
-            <div class="visual"></div>
+            <div class="visual">
+                <div id="plotly-graph" style="margin-top: 20px;">
+                    {{ graph_html | safe }}
+                </div>
+            </div>
         </div>
     </div>
+    <script>
+    </script>
 </body>
 </html>

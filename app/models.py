@@ -1,12 +1,14 @@
 from app import db
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+import datetime
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password = db.Column(db.String(64), index=True, unique=True)
+    is_admin = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
         return f'<User {self.username}>'
@@ -34,3 +36,9 @@ class Job(db.Model):
 
     def __repr__(self):
         return f'<Job {self.job_name}>'
+
+class PageVisit(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    route = db.Column(db.String(255))
+    timestamp = db.Column(db.DateTime)  # 添加时间戳字段
+    count = db.Column(db.Integer, default=0)

@@ -35,3 +35,4 @@ nbproject/
 # 忽略Nano编辑器备份文件
 .*.swp
 .*.swo
+venv/

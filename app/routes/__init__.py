@@ -1,5 +1,8 @@
 from flask import Blueprint
-from app import app
+from app import app,db
+from app.models import PageVisit
+from flask import request
+from datetime import datetime, timedelta
 
 computer_jobs_bp = Blueprint('computer_jobs', __name__)
 salary_distribution_bp = Blueprint('salary_distribution', __name__)
@@ -10,6 +13,16 @@ admin_bp = Blueprint('admin', __name__)
 index_bp = Blueprint('index', __name__)
 login_bp = Blueprint('login', __name__)
 
+@app.before_request
+def track_page_views():
+    route = request.path
+    current_time = datetime.utcnow()
+    page_visit = PageVisit.query.filter_by(route=route, timestamp=current_time.date()).first()
+    if not page_visit:
+        page_visit = PageVisit(route=route, count=0, timestamp=datetime.utcnow()+timedelta(hours=8))
+    page_visit.count += 1
+    db.session.add(page_visit)
+    db.session.commit()
 
 from . import computer_jobs, job_visual, user_profile, admin, index, login
 

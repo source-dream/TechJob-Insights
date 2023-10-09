@@ -88,6 +88,8 @@
                 <a href="{{ url_for('admin.admin_user') }}">用户管理</a>
                 <hr>
                 <a href="{{ url_for('admin.admin_data') }}">职位数据管理</a>
+                <hr>
+                <a href="{{ url_for('index.index') }}">回到主页</a>
             </div>
         </div>
         <div class="admin-container">
@@ -103,6 +105,7 @@
                             <th>用户邮箱</th>
                             <th>用户密码</th>
                             <th>注册时间</th>
+                            <th>权限</th>
                             <th>操作</th>
                         </tr>
                     </thead>
@@ -113,6 +116,7 @@
                             <td><input type="text" value="{{ user.email }}"></td>
                             <td><input type="text"></td>
                             <td>未知</td>
+                            <td>{% if user.is_admin %}管理员{% else %}普通用户{% endif %}</td>
                             <td><a>修改</a><a href="#" onclick="deleteUser({{ user.id }})" style="margin-left: 10px;">删除</a></td>
                         </tr>
                         {% endfor %}
