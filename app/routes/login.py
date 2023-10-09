@@ -14,6 +14,8 @@ def login():
             return redirect(url_for('login'))
         login_user(user, remember=True)
         # login_user(user, remember=request.form['remember_me'])
+        if current_user.is_admin:
+            return redirect(url_for('admin.admin'))
         return redirect(next_page or url_for('index.index'))
     if current_user.is_authenticated:
         return redirect(url_for('index.index'))
