@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <title>源梦职位分析登录</title>
+    <title>源梦职位分析注册</title>
     <style>
         body {
             height: 100vh;
@@ -11,13 +10,21 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            background-image: url('https://cdn.sourcedream.cn/image/computer.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
         }
+        
         .register-box {
             flex-direction: column;
-            padding: 60px 170px;
+            padding: 40px 180px;
             gap: 20px;
-            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
         }
+        
         #register {
             color: #000;
             font-family: Roboto;
@@ -26,7 +33,8 @@
             font-weight: 700;
             line-height: 48px;
         }
-        .input-text{
+        
+        .input-text {
             color: #000;
             font-family: Roboto;
             font-size: 14px;
@@ -36,16 +44,20 @@
             margin: 0;
             text-align: left;
         }
-        input{
-            overflow: hidden;
-            color: rgba(0, 0, 0, 0.50);
-            text-overflow: ellipsis;
+        
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
             font-family: Roboto;
             font-size: 14px;
             font-style: normal;
             font-weight: 400;
-            line-height: 20px; /* 142.857% */
+            line-height: 20px;
         }
+        
         .popup {
             position: fixed;
             top: 10px;
@@ -56,32 +68,75 @@
             border-radius: 5px;
             display: none;
         }
-
+        
         .popup-text {
             font-size: 14px;
+        }
+
+        /* 调整按钮的样式 */
+        .register-button,
+        .login-button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .register-button:hover,
+        .login-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 优化邮箱验证码部分的样式 */
+        .email-code {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            padding: 10px 15px;
+        }
+
+        .email-code:hover {
+            background-color: #0056b3;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .register-box {
+                padding: 20px;
+            }
+            
+            .input-box {
+                margin-bottom: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="register-box" style="display: flex;">
+    <div class="register-box">
         <p id="register">注册</p>
         <form method="POST">
             <div class="input-box">
-                <p for="username" class="input-text">用户名</p>
+                <label for="username" class="input-text">用户名</label>
                 <input type="text" id="username" name="username" required><br><br>
             </div>
             <div class="input-box">
-                <p for="email" class="input-text">邮箱</p>
+                <label for="email" class="input-text">邮箱</label>
                 <input type="text" id="email" name="email" required><br><br>
             </div>
             <div class="input-box">
-                <p for="email-code" class="input-text">邮箱验证码</p>
-                <div style="display: flex;height: 26px;">
-                    <input type="text" id="email-code" name="email-code" required style="width: 72px;flex:3;">
-                    <button class="email-code" onclick="" type="button" style="flex:2;font-size: 10px;">发送验证码</button></div><br>
+                <label for="email-code" class="input-text">邮箱验证码</label>
+                <div style="display: flex; align-items: center;">
+                    <input type="text" id="email-code" name="email-code" required style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px;">
+                    <button class="email-code" onclick="" type="button">发送验证码</button>
                 </div>
+            </div>
             <div class="input-box">
-                <p for="password" class="input-text">密码</p>
+                <label for="password" class="input-text">密码</label>
                 <input type="password" id="password" name="password" required><br><br>
             </div>
             <input type="submit" class="register-button" value="注册">
@@ -112,11 +167,10 @@
 
         // 检查是否存在flash消息
         var flashMessage = "{{ get_flashed_messages() }}";
-        if (flashMessage!="[]") {
+        if (flashMessage != "[]") {
             // 如果有flash消息，显示弹窗
             showPopup(flashMessage);
         }
     </script>
-
 </body>
 </html>
