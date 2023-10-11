@@ -1,19 +1,13 @@
 from app import db
-<<<<<<< HEAD
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
 
 class User(UserMixin, db.Model):
-=======
-
-class User(db.Model):
->>>>>>> 4030101f55c1ee59ee26e71b73bb56b575fc754b
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password = db.Column(db.String(64), index=True, unique=True)
-<<<<<<< HEAD
     is_admin = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
@@ -48,17 +42,3 @@ class PageVisit(db.Model):
     route = db.Column(db.String(255))
     timestamp = db.Column(db.DateTime)  # 添加时间戳字段
     count = db.Column(db.Integer, default=0)
-=======
-
-    def __repr__(self):
-        return f'<User {self.username}>'
-
-class Job(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    jobname = db.Column(db.String(120), index=True)
-    jobconpany = db.Column(db.String(120), index=True)
-    jobcity = db.Column(db.String(120), index=True)
-    jobrequire = db.Column(db.String(240), index=True)
-    jobwage = db.Column(db.String(240), index=True)
-    joburl = db.Column(db.String(240), index=True)
->>>>>>> 4030101f55c1ee59ee26e71b73bb56b575fc754b

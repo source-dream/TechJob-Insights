@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
     <title>Your Page Title</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
@@ -109,36 +108,5 @@
     </div>
     <script>
     </script>
-=======
-    <title>后台账号信息管理</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
-</head>
-<body>
-    <h1>后台账号信息管理</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>用户名</th>
-                <th>邮箱</th>
-                <th>操作</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for user in users %}
-                <tr>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.username }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>
-                        <a href="{{ url_for('admin.edit_user', user_id=user.id) }}">编辑</a>
-                        <a href="{{ url_for('admin.delete_user', user_id=user.id) }}" class="delete">删除</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a href="{{ url_for('admin.add_user') }}" class="add">添加用户</a>
->>>>>>> 4030101f55c1ee59ee26e71b73bb56b575fc754b
 </body>
 </html>
