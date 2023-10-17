@@ -4,127 +4,18 @@
     <meta charset="UTF-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <title>Document</title>
-    <script src="./js/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.0/dist/echarts.min.js"></script>
+    <script src="../static/js/echarts-wordcloud.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/job_visual.css">
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <style>
-        .navbar {
-            display: flex;
-            align-items: center;
-            height: 60px;
-            width: 100%;
-            background-color: rgb(255, 255, 255);
-        }
-        html,body {
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #c7c7c7;
-        }
-        .circle-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 2px solid #333;
-            margin: 0px 10px;
-        }
-        .circle-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        h1, p {
-            margin: 0;
-        }
-        .leaflet-bottom.leaflet-right{
-            display: none;
-        }
-        /* 补全CSS */
-        .section {
-            display: flex;
-            width: 100px;
-            height: 100%;
-            align-items: center;
-            margin-right: 20px;
-        }
-        .section a {
-            text-decoration: none;
-            color: #333;
-            margin: 0 10px;
-        }
-        /* 搜索框样式 */
-        .search-container {
-            display: flex;
-            align-items: center;
-        }
-        .search {
-            background-color: #fff;
-            border: 2px solid #333;
-            border-radius: 20px;
-            padding: 5px 15px;
-            display: flex;
-            align-items: center;
-        }
-        .search input[type="text"] {
-            border: none;
-            width: 150px;
-            padding: 5px;
-            outline: none;
-        }
-        /* 放大镜样式 */
-        .search button[type="submit"] {
-            background-color: transparent;
-            border: none;
-            margin-left: 10px;
-            cursor: pointer;
-        }
-        .search button[type="submit"]:before {
-            content: "\1F50D"; /* Unicode 放大镜图标 */
-            font-size: 18px;
-            color: #333;
-        }
-        .main-container{
-            display: flex;
-            flex-direction: column;
-        }
-        .container1,.container2{
-            display: flex;
-            margin: auto;
-            flex-direction: row;
-        }
-        #map{
-            width: 800px;
-            height: 600px;
-            margin: 20px 0px;
-        }
-        .box1, .box2{
-            margin: 20px;
-            background-color: #DDDDDD;
-            width: 400px;
-            height: 600px;
-        }
-        .box{
-            margin: 20px;
-            background-color: #DDDDDD;
-            width: 520px;
-            height: 600px;
-        }
-    </style>
 </head>
 <body>
     <div class="navbar">
         <div class="circle-avatar">
             <!-- <img src="your-image-url.jpg" alt="头像"> -->
         </div>
-        <p style="
-        color: #000;
-        font-family: Roboto;
-        font-size: 28px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 36px;
-        margin-left: 10px;">职位可视化</p>
+        <p class="job-visualization">职位可视化</p>
         <!-- 后面的内容居右 -->
         <div style="margin-left: auto;">
         </div>
@@ -154,81 +45,32 @@
     </div>
     <div class="main-container">
         <div class="container1">
-            <div class="box1"></div>
+            <div class="box1" id="education-chart"></div>
             <div id="map"></div>
-            <div class="box2"></div>
+            <div class="box2" id="wordcloud-chart"></div>
         </div>
         <div class="container2">
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
+            <div class="box" id="experience-chart"></div>
+            <div class="box" id="job-chart"></div>
+            <div class="box" id="city-chart"></div>
         </div>
     </div>
-    <footer style="height: 40px; background-color: #a0a0a0; display: flex; justify-content: center; align-items: center;">
+    <footer class="my-footer">
         <div>
-          <a href="https://www.sourcedream.cn" style="text-decoration: none; color: #333; font-weight: bold; font-size: 16px; margin-right: 20px;">&copy; 2023 源梦</a>
-          <a style="text-decoration: none; color: #333; font-size: 14px;" href="https://beian.miit.gov.cn/">赣ICP备2021011343号</a>
+          <a href="https://www.sourcedream.cn" class="copy-right">&copy; 2023 源梦</a>
+          <a class="record" href="https://beian.miit.gov.cn/">赣ICP备2021011343号</a>
         </div>
     </footer>
-    <script>
-        var map = L.map('map', {
-            center: [35.8617, 104.1954], // 设置地图初始中心点
-            zoom: 4, // 设置初始缩放级别
-            zoomControl: false, // 隐藏缩放控制按钮
-            dragging: false, // 禁用地图拖动
-            tap: false // 禁用地图上的点击事件
-        });
-        map.scrollWheelZoom.disable();
-        map.touchZoom.disable();
-        map.doubleClickZoom.disable();
-        // 禁用所有点击事件
-        map.boxZoom.disable(); // 禁用拖拽框缩放
-        map.doubleClickZoom.disable(); // 禁用双击缩放
-        map.keyboard.disable(); // 禁用键盘控制
-        map.scrollWheelZoom.disable(); // 禁用滚轮缩放
-        map.tap && map.tap.disable(); // 禁用触摸设备的点击
-
-        // 禁用地图点击事件（单击和双击）
-        map.off('click');
-        map.off('dblclick');
-
-        fetch('https://geo.datav.aliyun.com/areas_v3/bound/geojson?code=100000_full')
-            .then(function(response) {
-                return response.json();
-            })
-            .then(function(data) {
-                var geojsonLayer = L.geoJSON(data, {
-            onEachFeature: function(feature, layer) {
-                // 添加点击事件处理程序
-                // layer.on('click', function() {
-                //     // 在点击时，放大到选中城市的边界
-                //     map.fitBounds(layer.getBounds());
-                // });
-
-                // 添加悬浮效果
-                layer.on('mouseover', function() {
-                    // 在鼠标悬停时添加效果，例如改变颜色、边界等
-                    layer.setStyle({
-                        fillColor: 'yellow',
-                        weight: 2,
-                        opacity: 1
-                    });
-                });
-
-                // 移除悬浮效果
-                layer.on('mouseout', function() {
-                    // 在鼠标移出时恢复默认样式
-                    geojsonLayer.resetStyle(layer);
-                });
-
-                // 将城市名称添加为标签
-                if (feature.properties && feature.properties.name) {
-                    layer.bindTooltip(feature.properties.name, { permanent: false, direction: 'top' });
-                }
-            }
-        }).addTo(map);
-            });
-    </script>
-    
+    <script src="../static/js/China.js"></script>
+    <script>var education_data={{ education_data|tojson|safe }};</script>
+    <script src="../static/js/education_requirement.js"></script>
+    <script>var wordcloud_data={{ worldcloud_data|tojson|safe }};</script>
+    <script src="../static/js/wordcloud.js"></script>
+    <script>var experience_data={{ experience_data|tojson|safe }};</script>
+    <script src="../static/js/experience_requirement.js"></script>
+    <script>var job_data={{ job_data|tojson|safe }};</script>
+    <script src="../static/js/job.js"></script>
+    <script>var city_data={{ city_data|tojson|safe }};</script>
+    <script src="../static/js/city_distribution.js"></script>
 </body>
 </html>
