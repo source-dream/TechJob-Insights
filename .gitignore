@@ -36,3 +36,5 @@ nbproject/
 .*.swp
 .*.swo
 venv/
+# 忽略Python运行时产生的文件
+**/__pycache__/

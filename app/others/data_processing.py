@@ -5,11 +5,11 @@ from fuzzywuzzy import fuzz
 from collections import OrderedDict
 
 
-Job_Data_Path = ['E://Project//Python//TechJob-Insights//app//Data//C#.json',
-                 'E://Project//Python//TechJob-Insights//app//Data//C++.json',
-                 'E://Project//Python//TechJob-Insights//app//Data//JAVA.json',
-                 'E://Project//Python//TechJob-Insights//app//Data//PHP.json',
-                 'E://Project//Python//TechJob-Insights//app//Data//Python.json']
+Job_Data_Path = ['.//app//Data//C#.json',
+                 './/app//Data//C++.json',
+                 './/app//Data//JAVA.json',
+                 './/app//Data//PHP.json',
+                 './/app//Data//Python.json']
 
 #education_order = ['不限', '初中及以下', '中专/中技', '高中', '大专', '本科', '硕士', '博士']
 
