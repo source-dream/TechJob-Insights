@@ -10,7 +10,7 @@ import plotly.express as px
 
 @admin_bp.route("/")
 def admin():
-    if current_user.is_authenticated and current_user.is_admin:
+    if current_user.is_authenticated and current_user.auth == 'admin':
         job_size = len(Job.query.all())
         user_size = len(User.query.all())
         visit_time = 0
@@ -36,20 +36,20 @@ def admin():
 
 @admin_bp.route("/data")
 def admin_data():
-    if current_user.is_authenticated and current_user.is_admin:
+    if current_user.is_authenticated and current_user.auth == 'admin':
         return render_template('admin-data.html')
     return redirect(url_for('login'))
 
 @admin_bp.route("/user")
 def admin_user():
-    if current_user.is_authenticated and current_user.is_admin:
+    if current_user.is_authenticated and current_user.auth == 'admin':
         users = User.query.all()
         return render_template('admin-user.html', users=users)
     return redirect(url_for('login'))
 
 @admin_bp.route('/delete_user/<int:id>', methods=['DELETE'])
 def delete_user(id):
-    if current_user.is_authenticated and current_user.is_admin:
+    if current_user.is_authenticated and current_user.auth == 'admin':
         user = User.query.get(id)
         if user:
             db.session.delete(user)
