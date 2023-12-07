@@ -46,6 +46,7 @@
         url: "/job",
         method: "POST",
         dataType: "json",
+        timeout: 100000,// 我的服务器带不动这么大量的查询
         success: function (res){
           dataSet = res.data
           $('#datatables').DataTable({

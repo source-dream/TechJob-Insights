@@ -19,5 +19,6 @@ def user():
 def job():
     if current_user.is_authenticated and current_user.auth == 'admin':
         all_jobs = Job.query.all()
+        
         job_data_2d_list = [[job.id, job.tag,job.job_name, job.city,job.wage, job.requirements,job.education, job.recruiter,job.company, job.require,job.skill, job.welfare, job.url] for job in all_jobs]
         return {"data": job_data_2d_list}
