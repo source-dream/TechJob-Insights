@@ -43,3 +43,5 @@ class PageVisit(db.Model):
     route = db.Column(db.String(255))
     timestamp = db.Column(db.DateTime)  # 添加时间戳字段
     count = db.Column(db.Integer, default=0)
+
+# print(generate_password_hash("123456"))
