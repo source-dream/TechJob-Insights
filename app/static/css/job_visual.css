@@ -3,7 +3,7 @@
     align-items: center;
     height: 60px;
     width: 100%;
-    background-color: rgb(255, 255, 255);
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
  }
 
 html,body {
@@ -106,14 +106,14 @@ h1, p {
 
 .box1, .box2{
     margin: 20px;
-    background-color: #DDDDDD;
+    background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
     width: 400px;
     height: 600px;
 }
 
 .box{
     margin: 20px;
-    background-color: #DDDDDD;
+    background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
     width: 520px;
     height: 600px;
 }
@@ -130,7 +130,7 @@ h1, p {
 
 .my-footer {
     height: 40px;
-    background-color: #a0a0a0;
+    background-color:#fff
     display: flex;
     justify-content: center;
     align-items: center;
