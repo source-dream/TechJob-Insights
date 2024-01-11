@@ -79,25 +79,52 @@
             font-size: 18px;
             color: #333;
         }
-        .job-box{
-            display: flex;
-            flex-wrap: wrap;
+        .job-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* 根据设计调整 minmax 值 */
+            gap: 20px; /* 卡片之间的间距 */
             justify-content: center;
+            margin: 10px;
         }
-        .job-card{
-            background-image: linear-gradient(to top, #a3bded 0%, #6991c7 100%);
-            width: 240px;
-            height: 360px;
+                .job-card {
+            background-color: #c8d7ed; /* Light background for readability */
+            color: #333333; /* Dark text for contrast */
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effect */
+            margin: 10px;
+        }
+
+        .job-card p {
+            margin: 5px 0; /* Spacing between paragraphs */
+            line-height: 1.4; /* Improve line spacing */
+        }
+
+        .job-card a {
+            color: #5a9f5f; /* Color that matches your theme */
+            text-decoration: none; /* Remove underline */
+            font-weight: bold; /* Make it stand out */
+            transition: color 0.3s ease; /* Smooth color transition on hover */
+        }
+        .job-card a:hover {
+            color: #4e8b53; /* Slightly darker color on hover */
+        }
+        .job-card:hover {
+            transform: translateY(-5px); /* Lift card on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Increase shadow on hover */
+        }
+        .filter-bar {   
+            background-color: #c8d7ed;
             margin: 20px;
             padding: 10px;
             border-radius: 10px;
             display: flex;
         }
-
         .filter-item {
             margin: 0 10px;
         }
-
         .filter-item label {
             margin-right: 5px;
 
@@ -106,13 +133,11 @@
             background-image: linear-gradient(to top, #a3bded 0%, #6991c7 100%);
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
         }
-
         .filter-item select {
             padding: 5px 10px;
             border-radius: 5px;
             border: 1px solid #ccc;
         }
-
         .filter-search-btn {
             padding: 5px 15px;
             background-color: #4CAF50;
@@ -121,7 +146,6 @@
             border-radius: 5px;
             cursor: pointer;
         }
-
         .filter-search-btn:hover {
             background-color: #45a049;
         }
