@@ -54,7 +54,7 @@ def admin_user():
 # 获取信息接口
 @admin_bp.route("/getinfo/")
 def getinfo():
-    if True or identify():
+    if identify():
         user_size = len(User.query.all()) # 用户总数
         job_size = len(Job.query.all()) # 职位信息总数
         visit_time = 0

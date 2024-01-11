@@ -147,133 +147,133 @@
 <script>
 
   $(function () {
-    new Chart(document.getElementById('chart-bar').getContext('2d'), {
-      type: 'bar',
-      data: {
-        labels: ['2022/7/11', '2022/7/12', '2022/7/13', '2022/7/14', '2022/7/15', '2022/7/16'],
-        datasets: [{
-          label: 'pv值',
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: [
-            'rgba(52,143,80, 0.6)',
-            'rgba(52,143,80, 0.6)',
-            'rgba(52,143,80, 0.6)',
-            'rgba(52,143,80, 0.6)',
-            'rgba(52,143,80, 0.6)',
-            'rgba(52,143,80, 0.6)'
-          ],
-          borderColor: [
-            'rgba(52,143,80, 0.6)',
-            'rgba(52,143,80, 0.6)',
-            'rgba(52,143,80, 0.6)',
-            'rgba(52,143,80, 0.6)',
-            'rgba(52,143,80, 0.6)',
-            'rgba(52,143,80, 0.6)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-    new Chart(document.getElementById('chart-line').getContext('2d'), {
-      type: 'line',
-      data: {
-        labels: ['2017', '2018', '2019', '2020', '2021', '2022'],
-        datasets: [{
-          label: '营业额 单位/万元',
-          data: [65, 90, 60, 50, 40, 30, 20],
-          fill: false,
-          borderColor: 'rgba(185,110,228,.5)',
-          tension: 0.1
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-    new Chart(document.getElementById('chart3').getContext('2d'), {
-      type: 'line',
-      data: {
-        labels: ['2022.8.3', '2022.8.4', '2022.8.5', '2022.8.6', '2022.8.7', '2022.8.9'],
-        datasets: [
-          {
-            label: '粉丝',
-            data: [65, 90, 60, 50, 40, 30, 120],
-            fill: false,
-            borderColor: 'rgba(252, 92, 125,.5)',
-            tension: 0.1,
-            cubicInterpolationMode: 'monotone',
+    // new Chart(document.getElementById('chart-bar').getContext('2d'), {
+    //   type: 'bar',
+    //   data: {
+    //     labels: ['2022/7/11', '2022/7/12', '2022/7/13', '2022/7/14', '2022/7/15', '2022/7/16'],
+    //     datasets: [{
+    //       label: 'pv值',
+    //       data: [12, 19, 3, 5, 2, 3],
+    //       backgroundColor: [
+    //         'rgba(52,143,80, 0.6)',
+    //         'rgba(52,143,80, 0.6)',
+    //         'rgba(52,143,80, 0.6)',
+    //         'rgba(52,143,80, 0.6)',
+    //         'rgba(52,143,80, 0.6)',
+    //         'rgba(52,143,80, 0.6)'
+    //       ],
+    //       borderColor: [
+    //         'rgba(52,143,80, 0.6)',
+    //         'rgba(52,143,80, 0.6)',
+    //         'rgba(52,143,80, 0.6)',
+    //         'rgba(52,143,80, 0.6)',
+    //         'rgba(52,143,80, 0.6)',
+    //         'rgba(52,143,80, 0.6)'
+    //       ],
+    //       borderWidth: 1
+    //     }]
+    //   },
+    //   options: {
+    //     responsive: true,
+    //     scales: {
+    //       y: {
+    //         beginAtZero: true
+    //       }
+    //     }
+    //   }
+    // });
+    // new Chart(document.getElementById('chart-line').getContext('2d'), {
+    //   type: 'line',
+    //   data: {
+    //     labels: ['2017', '2018', '2019', '2020', '2021', '2022'],
+    //     datasets: [{
+    //       label: '营业额 单位/万元',
+    //       data: [65, 90, 60, 50, 40, 30, 20],
+    //       fill: false,
+    //       borderColor: 'rgba(185,110,228,.5)',
+    //       tension: 0.1
+    //     }]
+    //   },
+    //   options: {
+    //     responsive: true,
+    //     scales: {
+    //       y: {
+    //         beginAtZero: true
+    //       }
+    //     }
+    //   }
+    // });
+    // new Chart(document.getElementById('chart3').getContext('2d'), {
+    //   type: 'line',
+    //   data: {
+    //     labels: ['2022.8.3', '2022.8.4', '2022.8.5', '2022.8.6', '2022.8.7', '2022.8.9'],
+    //     datasets: [
+    //       {
+    //         label: '粉丝',
+    //         data: [65, 90, 60, 50, 40, 30, 120],
+    //         fill: false,
+    //         borderColor: 'rgba(252, 92, 125,.5)',
+    //         tension: 0.1,
+    //         cubicInterpolationMode: 'monotone',
 
-          },
-          {
-            label: '被收藏',
-            data: [30, 80, 70, 48, 64, 101, 10],
-            fill: false,
-            borderColor: 'rgba(10, 191, 188,.5)',
-            tension: 0.1,
-            cubicInterpolationMode: 'monotone',
-          },
-          {
-            label: '获赞',
-            data: [10, 37, 54, 68, 73, 98, 110],
-            fill: false,
-            borderColor: 'rgba(221, 100, 0,.5)',
-            tension: 0.1,
-            cubicInterpolationMode: 'monotone',
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-    new Chart(document.getElementById('chart4').getContext('2d'), {
-      type: 'doughnut',
-      data: {
-        labels: [
-          '已租',
-          '未租'
-        ],
-        datasets: [{
-          label: 'Dataset 1',
-          data: [300, 50],
-          backgroundColor: [
-            '#0abfbc',
-            '#348f50'
-          ],
-          hoverOffset: 4
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: true,
-            text: '已租未租房源占比图'
-          }
-        }
-      }
-    });
+    //       },
+    //       {
+    //         label: '被收藏',
+    //         data: [30, 80, 70, 48, 64, 101, 10],
+    //         fill: false,
+    //         borderColor: 'rgba(10, 191, 188,.5)',
+    //         tension: 0.1,
+    //         cubicInterpolationMode: 'monotone',
+    //       },
+    //       {
+    //         label: '获赞',
+    //         data: [10, 37, 54, 68, 73, 98, 110],
+    //         fill: false,
+    //         borderColor: 'rgba(221, 100, 0,.5)',
+    //         tension: 0.1,
+    //         cubicInterpolationMode: 'monotone',
+    //       }
+    //     ]
+    //   },
+    //   options: {
+    //     responsive: true,
+    //     scales: {
+    //       y: {
+    //         beginAtZero: true
+    //       }
+    //     }
+    //   }
+    // });
+    // new Chart(document.getElementById('chart4').getContext('2d'), {
+    //   type: 'doughnut',
+    //   data: {
+    //     labels: [
+    //       '已租',
+    //       '未租'
+    //     ],
+    //     datasets: [{
+    //       label: 'Dataset 1',
+    //       data: [300, 50],
+    //       backgroundColor: [
+    //         '#0abfbc',
+    //         '#348f50'
+    //       ],
+    //       hoverOffset: 4
+    //     }]
+    //   },
+    //   options: {
+    //     responsive: true,
+    //     plugins: {
+    //       legend: {
+    //         position: 'top',
+    //       },
+    //       title: {
+    //         display: true,
+    //         text: ''
+    //       }
+    //     }
+    //   }
+    // });
     //图表响应式处理
     window.onresize = function () {
       for (let id in Chart.instances) {
@@ -292,7 +292,7 @@
         document.getElementById('user-size').textContent = data.user_size;
         document.getElementById('job-size').textContent = data.job_size;
         document.getElementById('visit-time').textContent = data.visit_time;
-        document.getElementById('visit-time-day').textContent = data.visit_time_day;
+        document.getElementById('visit-time-day').textContent = data.visit_time
       })
   })
 </script>
