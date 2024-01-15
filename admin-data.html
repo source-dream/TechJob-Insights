@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .main-container {
+            height: 100vh;
+            display: flex;
+        }
+        .navbar {
+            background-color: #333;
+            color: #fff; /* White text on the navbar */
+            flex: 1;
+            padding: 20px;
+        }
+        .navbar a {
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #fff; /* White text for navbar links */
+            font-weight: bold;
+            text-align: center;
+        }
+        .admin-container {
+            background-color: #C7C7C7;
+            flex: 4;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="navbar">
+            <div class="section">
+                <a href="{{ url_for('admin.admin') }}">概览</a>
+                <hr>
+                <a href="{{ url_for('admin.admin_user') }}">用户管理</a>
+                <hr>
+                <a href="{{ url_for('admin.admin_data') }}">职位数据管理</a>
+                <hr>
+                <a href="{{ url_for('index.index') }}">回到主页</a>
+            </div>
+        </div>
+        <div class="admin-container"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>后台管理</title>
+    <link rel="stylesheet" href="https://cdn.sourcedream.cn/lib/bootstrap-icons/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.sourcedream.cn//lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.sourcedream.cn//lib/bootstrap-table/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://cdn.sourcedream.cn//lib/@ztree/ztree_v3/css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="https://cdn.sourcedream.cn//lib/@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css"/>
+    <link rel="stylesheet" href="https://cdn.sourcedream.cn//lib/overlayscrollbars/styles/overlayscrollbars.min.css"/>
+    <link rel="stylesheet" href="https://cdn.sourcedream.cn//dist/css/bootstrap-admin.min.css">
+</head>
+<body class="bg-body-tertiary py-3">
+    <div class="container-fluid">
+      <!--    布局的容器        -->
+      <div class="bsa-layout1">
+        <div class="bsa-layout1-left">
+          <div class="bsa-chevron-toggle"></div>
+          <div class="card h-100 rounded-0 border-0 shadow-sm">
+            <div class="card-header bg-body rounded-0">
+              菜单栏
+            </div>
+            <div class="card-body" id="bsa-layout1-scroll-area">
+              <div>
+                <div class="alert alert-primary" role="alert">
+                  A simple primary alert—check it out!
+                </div>
+                <div class="alert alert-secondary" role="alert">
+                  A simple secondary alert—check it out!
+                </div>
+                <div class="alert alert-success" role="alert">
+                  A simple success alert—check it out!
+                </div>
+                <div class="alert alert-danger" role="alert">
+                  A simple danger alert—check it out!
+                </div>
+                <div class="alert alert-warning" role="alert">
+                  A simple warning alert—check it out!
+                </div>
+                <div class="alert alert-info" role="alert">
+                  A simple info alert—check it out!
+                </div>
+                <div class="alert alert-light" role="alert">
+                  A simple light alert—check it out!
+                </div>
+                <div class="alert alert-dark" role="alert">
+                  A simple dark alert—check it out!
+                </div>
+              </div>
+            </div>
+            <!-- <div class="card-footer bg-body">
+              左侧底部
+            </div> -->
+          </div>
+        </div>
+        <div class="bsa-layout1-right">
+          <div class="card h-100 rounded-0 border-0 shadow-sm">
+            <div class="card-header bg-body rounded-0">
+              右侧标题
+            </div>
+            <div class="card-body overflow-auto">
+              <div>
+                <div class="alert alert-primary" role="alert">
+                  A simple primary alert—check it out!
+                </div>
+                <div class="alert alert-secondary" role="alert">
+                  A simple secondary alert—check it out!
+                </div>
+                <div class="alert alert-success" role="alert">
+                  A simple success alert—check it out!
+                </div>
+                <div class="alert alert-danger" role="alert">
+                  A simple danger alert—check it out!
+                </div>
+                <div class="alert alert-warning" role="alert">
+                  A simple warning alert—check it out!
+                </div>
+                <div class="alert alert-info" role="alert">
+                  A simple info alert—check it out!
+                </div>
+                <div class="alert alert-light" role="alert">
+                  A simple light alert—check it out!
+                </div>
+                <div class="alert alert-dark" role="alert">
+                  A simple dark alert—check it out!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--回到顶部开始-->
+    <a href="javaScript:" class="bsa-back-to-top"><i class='bi bi-arrow-up-short'></i></a>
+    <!--回到顶部结束-->
+    
+    
+    <script src="https://cdn.sourcedream.cn//lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.sourcedream.cn//lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.sourcedream.cn//lib/@popperjs/core/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.sourcedream.cn//lib/@eonasdan/tempus-dominus/dist/js/tempus-dominus.min.js"></script>
+    <script src="https://cdn.sourcedream.cn//lib/bootstrap-table/dist/bootstrap-table.min.js"></script>
+    <script src="https://cdn.sourcedream.cn//lib/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="https://cdn.sourcedream.cn//lib/@ztree/ztree_v3/js/jquery.ztree.all.min.js"></script>
+    <script src="https://cdn.sourcedream.cn//lib/overlayscrollbars/browser/overlayscrollbars.browser.es6.min.js"></script>
+    <script src="https://cdn.sourcedream.cn//dist/js/bootstrap-admin.min.js"></script>
+    <script src="https://cdn.sourcedream.cn//dist/js/app.js"></script>
+    <!--假数据模拟,生产环境中请直接删除该js-->
+    <script src="https://cdn.sourcedream.cn//dist/js/bootstrap-admin.mock.js"></script>
+    <script>
+      $(document).ready(function (e) {
+        //滚动条插件美化滚动条
+        OverlayScrollbarsGlobal.OverlayScrollbars(document.querySelector('#bsa-layout1-scroll-area'), {
+          overflow: {
+            x: 'hidden',
+          },
+        });
+    
+      })
+    </script>
+    
+    
+</body>
+<!-- <body>
+    <div class="main-container">
+        <div class="navbar">
+            <div class="section">
+                <a href="{{ url_for('admin.admin') }}">概览</a>
+                <hr>
+                <a href="{{ url_for('admin.admin_user') }}">用户管理</a>
+                <hr>
+                <a href="{{ url_for('admin.admin_data') }}">职位数据管理</a>
+                <hr>
+                <a href="{{ url_for('index.index') }}">回到主页</a>
+            </div>
+        </div>
+        <div class="admin-container">
+            <div class="card-box">
+                <div class="card">
+                    <h1 style="margin: 20px;"> 注册用户数</h1>
+                    <p>{{ user_size }}</p>
+                </div>
+                <div class="card">
+                    <h1 style="margin: 20px;"> 职位数据数</h1>
+                    <p>{{ job_size }}</p>
+                </div>
+                <div class="card">
+                    <h1 style="margin: 20px;"> 总访问次数</h1>
+                    <p>{{ visit_time }}</p>
+                </div>
+                <div class="card">
+                    <h1 style="margin: 20px;"> 当日访问次数</h1>
+                    <p>{{ visit_time_day }}</p>
+                </div>
+            </div>
+            <div class="visual">
+                <div id="plotly-graph" style="margin-top: 20px;">
+                    {{ graph_html | safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    </script>
+</body> -->
+</html>

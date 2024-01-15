@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Document</title>
+    <style>
+        /* 基本重置样式 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+        /* 导航栏样式 */
+        .navbar {
+            display: flex;
+            align-items: center;
+            height: 60px;
+            width: 100%;
+			background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding:1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            /*background-color: rgb(161, 196, 253);*/
+        }
+        html,body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background-color:#d6e9f5;
+        }
+        .circle-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #333;
+            margin: 0px 10px;
+        }
+        .circle-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        h1, p {
+            margin: 0;
+        }
+        /* 补全CSS */
+        .section {
+            display: flex;
+            width: 100px;
+            height: 100%;
+            align-items: center;
+            margin-right: 20px;
+        }
+        .section a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 10px;
+        }
+        /* 搜索框样式 */
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+        .search {
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 20px;
+            padding: 5px 15px;
+            display: flex;
+            align-items: center;
+        }
+        .search input[type="text"] {
+            border: none;
+            width: 150px;
+            padding: 5px;
+            outline: none;
+        }
+        /* 放大镜样式 */
+        .search button[type="submit"] {
+            background-color: transparent;
+            border: none;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .search button[type="submit"]:before {
+            content: "\1F50D"; /* Unicode 放大镜图标 */
+            font-size: 18px;
+            color: #333;
+        }
+        .job-box{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .job-card{
+            background-image: linear-gradient(to top, #e4f9f5 0%, #b6ccd8 100%);
+            width: 240px;
+            height: 360px;
+            margin: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column; /* 假设您希望子元素垂直排列 */
+            justify-content: flex-start; /* 子元素从顶部开始排列 */
+            align-items: left; /* 子元素在卡片中水平居中 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 可选：为卡片添加阴影，增加层次感 */
+        }
+
+        /* 过滤栏样式 */
+        .filter-bar {
+            display: flex;
+            justify-content: flex-start; /* 将子元素对齐到容器的起始位置 */
+            padding: 1rem 2rem;
+            background-color:#d9e7f0;
+        }
+        .filter-item {
+            margin: 0 10px;
+        }
+
+        .filter-item label {
+            margin-right: 5px;
+
+        }
+        .job-card:hover {
+            background-image: linear-gradient(to top, #a3bded 0%, #6296b7 100%);
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
+        }
+
+        .filter-item select {
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .filter-search-btn {
+            padding: 5px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .filter-search-btn:hover {
+            background-color: #45a049;
+        }
+
+        .button {
+        display: inline-block;
+        padding: 5px 10px;
+        margin: 5px;
+        background-color:#00668c;
+        color: white; /* 白色文字 */
+        text-align: center;
+        text-decoration: none;
+        font-size: 12px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        }
+        .container{
+            text-align:left;
+        }
+
+        .button:hover {
+        background-color: #45a049; /* 深绿色背景 */
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <div class="navbar">
+        <div class="circle-avatar">
+            <!-- <img src="your-image-url.jpg" alt="头像"> -->
+        </div>
+        <p style="
+        color: #000;
+        font-family: Roboto;
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 36px;
+        margin-left: 10px;">职位库</p>
+        <!-- 后面的内容居右 -->
+        <div style="margin-left: auto;">
+        </div>
+        <div class="section">
+            <a href="{{ url_for('index.index') }}">主页</a>
+        </div>
+        <div class="section">
+            <a href="{{ url_for('computer_jobs') }}">职位库</a>
+        </div>
+        <div class="section">
+            <a href="{{ url_for('job_visual') }}">职位可视化</a>
+        </div>
+        <div class="section">
+            <a href="{{ url_for('user_profile') }}">我的信息</a>
+        </div>
+        <!-- 搜索框样式 -->
+        <div class="search-container">
+            <form action="#" method="get">
+                <div class="search">
+                    <input type="text" placeholder="搜索">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.1356 13.9974C11.8151 15.1216 10.1034 15.8 8.23329 15.8C4.05434 15.8 0.666626 12.4123 0.666626 8.23333C0.666626 4.05438 4.05434 0.666664 8.23329 0.666664C12.4122 0.666664 15.8 4.05438 15.8 8.23333C15.8 10.0922 15.1297 11.7944 14.0177 13.1117L17.6497 16.7437L16.7658 17.6275L13.1356 13.9974ZM14.55 8.23333C14.55 11.7219 11.7219 14.55 8.23329 14.55C4.74469 14.55 1.91663 11.7219 1.91663 8.23333C1.91663 4.74473 4.74469 1.91666 8.23329 1.91666C11.7219 1.91666 14.55 4.74473 14.55 8.23333Z" fill="black" fill-opacity="0.7"/>
+                    </svg>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="filter-bar">
+        <div class="filter-item">
+            <label for="city">地域:</label>
+            <select id="city" name="city">
+                <option value="all">不限</option>
+                <option value="all">四川</option>
+            </select>
+        </div>
+        <div class="filter-item">
+            <label for="city">城市:</label>
+            <select id="city" name="city">
+                <option value="all">不限</option>
+                <option value="all">成都</option>
+            </select>
+        </div>
+        <div class="filter-item">
+            <label for="industry">技术栈:</label>
+            <select id="industry" name="industry">
+                <option value="all">不限</option>
+                <option value="all">C++</option>
+                <option value="all">python</option>
+            </select>
+        </div>
+        <div class="filter-item">
+            <label for="jobType">薪资待遇</label>
+            <select id="jobType" name="jobType">
+                <option value="all">不限</option>
+            </select>
+        </div>
+        <div class="filter-item">
+            <label for="jobType">学历要求</label>
+            <select id="jobType" name="jobType">
+                <option value="all">不限</option>
+            </select>
+        </div>
+        <div class="filter-item">
+            <label for="jobType">工作经验</label>
+            <select id="jobType" name="jobType">
+                <option value="all">不限</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="job-box">
+        {% for job in jobs %}
+        <div class="job-card">
+            <p><strong>职位：</strong>{{ job.job_name }}</p>
+            <p><strong>地点：</strong>{{ job.city }}</p>
+            <p><strong>薪资及工作经验：</strong>{{ job.wage }} {{ job.requirements }}</p>
+            <p><strong>学历：</strong>{{ job.education }} 
+            <p><strong>联系人：</strong>{{ job.recruiter }}</p>
+            <p><strong>公司：</strong>{{ job.company }}</p>
+            <p><strong>情况：</strong>{{ job.require }}</p>
+            <p><strong>技能：</strong>{{ job.skill }}</p>
+            <p><strong>福利：</strong>{{ job.welfare }}</p>
+        <div class="container"></div>
+            <a href="{{ job.url }}" class="button">点击前往</a>
+
+            <!-- 其他职位信息字段 -->
+        </div>
+        {% endfor %}
+    </div>
+    <div style="text-align: center;margin: 10px;">
+        第 7 页
+    </div>
+    <footer style="height: 20px; background-color: #a0a0a0; display: flex; justify-content: center; align-items: center;">
+        <div>
+          <a href="https://www.sourcedream.cn" style="text-decoration: none; color: #333; font-weight: bold; font-size: 16px; margin-right: 20px;">&copy; 2023 源梦</a>
+          <a style="text-decoration: none; color: #333; font-size: 14px;" href="https://beian.miit.gov.cn/">赣ICP备2021011343号</a>
+        </div>
+    </footer>
+</body>
+</html>
